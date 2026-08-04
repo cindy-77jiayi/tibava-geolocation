@@ -15,9 +15,6 @@
                 <VideoPlayer @resize="onVideoResize" />
               </v-col>
             </v-row>
-            <v-row class="mb-2 px-4">
-              <TimeSelector width="100%" @resize="onVideoResize" />
-            </v-row>
           </v-card>
         </v-col>
 
@@ -36,6 +33,7 @@
                 <v-tab>Faces</v-tab>
                 <v-tab>Places</v-tab>
                 <v-tab>Annotations</v-tab>
+                <v-tab>Map</v-tab>
                 <v-tab>Transcript</v-tab>
                 <v-tab>Word Cloud</v-tab>
               </v-tabs>
@@ -69,8 +67,12 @@
                 <ClusterTimelineItemOverview name="Place" :clusters="placeClusters"></ClusterTimelineItemOverview>
               </v-tab-item>
 
-              <v-tab-item>
+              <v-tab-item style="height: 100%">
                 <CurrentEntitiesOverView />
+              </v-tab-item>
+
+              <v-tab-item style="height: 100%">
+                <GeolocationDemo variant="map" />
               </v-tab-item>
 
               <v-tab-item style="height: 100%">
@@ -94,9 +96,12 @@
       <v-row class="ma-2">
         <v-col>
           <v-card class="d-flex flex-column flex-nowrap" max-width="100%" elevation="2" scrollable="False">
-            <v-card-title> Timelines </v-card-title>
+            <v-card-title>
+              Geolocation timeline
+              <v-chip class="ml-3" small outlined color="deep-purple">Mock data</v-chip>
+            </v-card-title>
             <v-flex grow class="mb-2 px-4">
-              <Timeline ref="timeline" width="100%"> </Timeline>
+              <GeolocationDemo variant="timeline" />
             </v-flex>
           </v-card>
         </v-col>
@@ -109,8 +114,6 @@
 <script>
 import VideoPlayer from "@/components/VideoPlayer.vue";
 import TranscriptOverview from "@/components/TranscriptOverview.vue";
-import Timeline from "@/components/Timeline.vue";
-import TimeSelector from "@/components/TimeSelector.vue";
 import CurrentEntitiesOverView from "@/components/CurrentEntitiesOverView.vue";
 import ModalTimelineSegmentAnnotate from "@/components/ModalTimelineSegmentAnnotate.vue";
 import ShotsOverview from "@/components/ShotsOverview.vue";
@@ -133,6 +136,7 @@ import { usePluginRunStore } from "../store/plugin_run.js";
 import { useClusterTimelineItemStore } from "../store/cluster_timeline_item";
 import { useShotStore } from "@/store/shot";
 import ClusterTimelineItemOverview from "../components/ClusterTimelineItemOverview.vue";
+import GeolocationDemo from "@/components/GeolocationDemo.vue";
 
 export default {
   data() {
@@ -420,15 +424,14 @@ export default {
   components: {
     VideoPlayer,
     TranscriptOverview,
-    Timeline,
-    TimeSelector,
     CurrentEntitiesOverView,
     ModalTimelineSegmentAnnotate,
     ShotsOverview,
     WordcloudCard,
     VisualizationMenu,
     PersonGraph,
-    ClusterTimelineItemOverview
+    ClusterTimelineItemOverview,
+    GeolocationDemo
   },
 
   watch: {

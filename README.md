@@ -2,6 +2,12 @@
 
 <!-- ![](images/iart-salvator.png) -->
 
+> **Geolocation demo note:** This repository is a modified demo based on
+> [TIB AV-Analytics](https://github.com/TIBHannover/tibava). It adds a mock
+> geolocation map and shot timeline for UI demonstration only; no
+> geolocation model output is used. This modified work remains licensed under
+> the GPL-3.0; see [LICENSE](LICENSE).
+
 
 ## Overview
 
